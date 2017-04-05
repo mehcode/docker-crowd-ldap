@@ -17,5 +17,7 @@ RUN set -x \
 
 RUN cd ${LDAP_INSTALL} && mvn package
 
+WORKDIR /opt/crowd-ldap
+
 COPY "docker-entrypoint.sh" "/"
 ENTRYPOINT ["/docker-entrypoint.sh"]
