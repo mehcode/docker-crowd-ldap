@@ -18,7 +18,7 @@ RUN set -x \
 RUN cd ${LDAP_INSTALL} && mvn package
 
 RUN mkdir -p ${LDAP_HOME} \
-    && cp -r ${LDAP_INSTALL}/etc ${LDAP_HOME}
+    && cp -r ${LDAP_INSTALL}/etc/* ${LDAP_HOME}
 
 COPY "docker-entrypoint.sh" "/"
 ENTRYPOINT ["/docker-entrypoint.sh"]
