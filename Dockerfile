@@ -1,6 +1,6 @@
 FROM maven:3.3.9-jdk-8
 
-ENV LDAP_HOME      /var/crowd-ldap
+ENV LDAP_HOME      /opt/crowd-ldap/etc
 ENV LDAP_INSTALL   /opt/crowd-ldap
 
 ENV CROWD_URL           http\://localhost\:8095
@@ -16,9 +16,6 @@ RUN set -x \
      | tar -xz --directory ${LDAP_INSTALL} --strip-components=1 --no-same-owner
 
 RUN cd ${LDAP_INSTALL} && mvn package
-
-RUN mkdir -p ${LDAP_HOME} \
-    && cp -r ${LDAP_INSTALL}/etc/* ${LDAP_HOME}
 
 COPY "docker-entrypoint.sh" "/"
 ENTRYPOINT ["/docker-entrypoint.sh"]
