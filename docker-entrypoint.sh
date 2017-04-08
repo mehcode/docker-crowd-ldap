@@ -11,5 +11,9 @@ echo "session.lastvalidation=session.lastvalidation" > ${LDAP_HOME}/crowd.proper
     && echo "session.validationinterval=0" >> ${LDAP_HOME}/crowd.properties \
     && echo "application.password=${CROWD_APP_PASSWORD}" >> ${LDAP_HOME}/crowd.properties
 
+# Configure crowd-ldap-server.properties
+echo "ssl.enabled=false" > ${LDAP_HOME}/crowd-ldap-server.properties \
+    && echo "emulate.ad.memberof=true" >> ${LDAP_HOME}/crowd-ldap-server.properties
+
 # Run
 exec java -cp ${LDAP_HOME} -jar ${LDAP_INSTALL}/target/crowd-ldap-server-1.0.4-SNAPSHOT.jar
